@@ -23,8 +23,6 @@ function quitarNoScript(){
 function mostraAlerta(){
         try {
          $(function(){
-           // $('input[class*="keyboard"]').keyboard();
-           
            if($('.alertMensaje').html()!=undefined){
                 alert($('.alertMensaje').html());        
            }
