@@ -71,17 +71,16 @@
     }
 %>
  <script  type="text/javascript">
-           quitarNoScript();
-    </script>
-    
 
+    </script>
        <div class="navbar-header">
          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
            <span class="icon-bar"></span>
            <span class="icon-bar"></span>
            <span class="icon-bar"></span>
          </button>
-           <a tabindex="" id="logo" class="navbar-brand" href="<%= request.getContextPath() %>/"><img height="25px" src="<%= request.getContextPath() %>/image/dspace-logo-only.png" alt="Repositorio digital FITCO" longdesc=""/></a><!--<fmt:message key="jsp.layout.navbar-alt-logo"/> -->
+           <a id="logo" class="navbar-brand" href="<%= request.getContextPath() %>/"><img class="tamañoLogo" src="<%= request.getContextPath() %>/image/FUTCO/LOGOFITCO_trans.png" alt="logo del repositorio eccesible tecnológico comfenalco"/></a><!--<fmt:message key="jsp.layout.navbar-alt-logo"/> -->
+       <!--<img class="tamañoLogo" src="<%= request.getContextPath() %>/image/FUTCO/LOGOFITCO_trans.png" alt="logo del repositorio eccesible tecnológico comfenalco"/> -->
        </div>
        <nav class="collapse navbar-collapse bs-navbar-collapse" role="menubar">
          <ul class="nav navbar-nav">
@@ -131,7 +130,7 @@
 		<%
     } else {
 		%>
-             <a accesskey="5"  tabindex="" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <fmt:message key="jsp.layout.navbar-default.sign"/> <b class="caret"></b></a>
+             <a accesskey="4"  tabindex="" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <fmt:message key="jsp.layout.navbar-default.sign"/> <b class="caret"></b></a>
 	<% } %>             
              <ul   class="dropdown-menu" tabindex="" accesskey="5" role="navigation">
                <li role="menuitem"><a href="<%= request.getContextPath() %>/mydspace"><fmt:message key="jsp.layout.navbar-default.users"/></a></li>
@@ -156,11 +155,13 @@
           
 	<%-- Search Box --%>
 	<form method="get" action="<%= request.getContextPath() %>/simple-search" class="navbar-form navbar-right" scope="search">
-	    <div class="form-group">
-                <input tabindex="" type="text" class="keyboard form-control" placeholder="<fmt:message key="jsp.layout.navbar-default.search"/>" name="query" id="tequery" size="25"/>
+	    
+            <div class="form-group">
+                <label for="tequery"><fmt:message key="jsp.layout.navbar-default.search"/></label>
+                <input tabindex="" type="text" class="keyboard form-control_search" style="width:none;" placeholder="<fmt:message key="jsp.layout.navbar-default.search"/>" name="query" id="tequery" size="25"/>
         </div>
-        <label for="btn_search"></label>
-        <button tabindex="" type="submit" title="buscar" class="btn btn-primary" value="Buscar" navbar-brand><span class="glyphicon glyphicon-search" role="button" name="btn_search"></span></button>
+        
+        <button tabindex="" type="submit" title="buscar" class="btn btn-primary" value="Buscar" navbar-brand><span class="glyphicon glyphicon-search" role="button" id="btn_search" name="btn_search"></span></button>
 <%--               <br/><a href="<%= request.getContextPath() %>/advanced-search"><fmt:message key="jsp.layout.navbar-default.advanced"/></a>
 <%
 			if (ConfigurationManager.getBooleanProperty("webui.controlledvocabulary.enable"))

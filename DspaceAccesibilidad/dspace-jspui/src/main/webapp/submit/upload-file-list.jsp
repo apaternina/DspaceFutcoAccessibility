@@ -75,11 +75,13 @@
     boolean isAdvancedForm = ConfigurationManager.getBooleanProperty("webui.submission.restrictstep.enableAdvancedForm", false);
 
 %>
-
+    <script  type="text/javascript">
+        quitarNoScript();
+        </script>
 <dspace:layout style="submission" locbar="off" navbar="off" titlekey="jsp.submit.upload-file-list.title">
 
-    <form action="<%= request.getContextPath() %>/submit" method="post" onkeydown="return disableEnterKey(event);">
-
+<!--    <form action="<%= request.getContextPath() %>/submit" method="post" onkeydown="return disableEnterKey(event);">-->
+<form action="<%= request.getContextPath() %>/submit" method="post">
         <jsp:include page="/submit/progressbar.jsp"/>
 
 <%--        <h1>Submit: <%= (justUploaded ? "File Uploaded Successfully" : "Uploaded Files") %></h1> --%>
@@ -88,7 +90,8 @@
     if (justUploaded)
     {
 %>
-		<h1><fmt:message key="jsp.submit.upload-file-list.heading1"/>
+		<h1 ><fmt:message key="jsp.submit.upload-file-list.heading1"/>
+                  
 		<dspace:popup page="<%= LocaleSupport.getLocalizedMessage(pageContext, \"help.index\") + \"#uploadedfile\"%>"><fmt:message key="jsp.morehelp"/></dspace:popup>
 		</h1>
         <p><fmt:message key="jsp.submit.upload-file-list.info1"/></p>
@@ -107,11 +110,11 @@
         
         <table class="table" align="center" summary="Table dispalying your submitted files">
             <tr>
-				<th id="t1" class="oddRowEvenCol"><fmt:message key="jsp.submit.upload-file-list.tableheading1"/></th>
-                <th id="t2" class="oddRowOddCol"><fmt:message key="jsp.submit.upload-file-list.tableheading2"/></th>
-                <th id="t3" class="oddRowEvenCol"><fmt:message key="jsp.submit.upload-file-list.tableheading3"/></th>
-                <th id="t4" class="oddRowOddCol"><fmt:message key="jsp.submit.upload-file-list.tableheading4"/></th>
-                <th id="t5" class="oddRowEvenCol"><fmt:message key="jsp.submit.upload-file-list.tableheading5"/></th>
+				<th id="t1"  scope="row"class="oddRowEvenCol"><fmt:message key="jsp.submit.upload-file-list.tableheading1"/></th>
+                <th id="t2" scope="row" class="oddRowOddCol"><fmt:message key="jsp.submit.upload-file-list.tableheading2"/></th>
+                <th id="t3" scope="row" class="oddRowEvenCol"><fmt:message key="jsp.submit.upload-file-list.tableheading3"/></th>
+                <th id="t4" scope="row" class="oddRowOddCol"><fmt:message key="jsp.submit.upload-file-list.tableheading4"/></th>
+                <th id="t5" scope="row" class="oddRowEvenCol"><fmt:message key="jsp.submit.upload-file-list.tableheading5"/></th>
 <%
     String headerClass = "oddRowEvenCol";
 
@@ -120,7 +123,7 @@
         headerClass = (headerClass == "oddRowEvenCol" ? "oddRowOddCol" : "oddRowEvenCol");
 %>
 
-                <th id="t6" class="<%= headerClass %>"><fmt:message key="jsp.submit.upload-file-list.tableheading6"/></th>
+                <th id="t6" scope="col" class="<%= headerClass %>"><fmt:message key="jsp.submit.upload-file-list.tableheading6"/></th>
 <%
     }
 
@@ -129,7 +132,7 @@
         // Access Setting
         headerClass = (headerClass == "oddRowEvenCol" ? "oddRowOddCol" : "oddRowEvenCol");
 %>
-                <th id="t7" class="<%= headerClass %>"><fmt:message key="jsp.submit.upload-file-list.tableheading7"/></th>
+                <th id="t7" scope="col" class="<%= headerClass %>"><fmt:message key="jsp.submit.upload-file-list.tableheading7"/></th>
 
 <%
     }

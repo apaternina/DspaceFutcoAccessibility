@@ -30,6 +30,10 @@
     boolean locbar = ((Boolean) request.getAttribute("dspace.layout.locbar")).booleanValue();
 
     String siteName = ConfigurationManager.getProperty("dspace.name");
+    
+    String scriptfutco = (String) request.getAttribute("dspace.layout.scriptfutco");    //Added code
+    String cssfutco = (String) request.getAttribute("dspace.layout.cssfutco");                  //Added code
+    
     String feedRef = (String)request.getAttribute("dspace.layout.feedref");
     boolean osLink = ConfigurationManager.getBooleanProperty("websvc.opensearch.autolink");
     String osCtx = ConfigurationManager.getProperty("websvc.opensearch.svccontext");
@@ -43,7 +47,7 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>    
         <title><%= siteName %>: <%= title %></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -76,7 +80,21 @@
         { %>
 <%= extraHeadData %>
 <%
+     
         }
+ 
+    if (scriptfutco == null || scriptfutco.equals("on"))           //Added code starts here
+       {
+%>
+     <script type='text/javascript' src='<%= request.getContextPath() %>/static/js/FUTCO.js'></script>
+<%      }
+    if (cssfutco == null || cssfutco.equals("on"))
+    {
+%>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/static/css/FUTCO/FUTCO.css" type="text/css" />
+
+<%
+    }                                                                 //Added code ends here
 %>
     <style>
         
@@ -87,18 +105,13 @@
 	<script type='text/javascript' src='<%= request.getContextPath() %>/static/js/holder.js'></script>
 	<script type="text/javascript" src="<%= request.getContextPath() %>/utils.js"></script>
     <script type="text/javascript" src="<%= request.getContextPath() %>/static/js/choice-support.js"> </script>
-    <script type='text/javascript' src='<%= request.getContextPath() %>/static/js/FUTCO.js'></script>
+    
     
     <!--
     Fecha : 20141102
     Autor : Antonio Paternina
-    Descripción : Se se agregan los script y los css para el teclado virtual y la hoja de estilo general de la apliccacion.
+    Descripción : Se se agregan los script y los css para el teclado virtual y la hoja de estilo general de la aplicacion.
     -->
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/static/css/FUTCO/FUTCO.css" type="text/css" />
-    
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/static/css/keyboard/keyboard.css" type="text/css" />
-    <script type='text/javascript' src="<%= request.getContextPath() %>/static/js/keyboard/jquery.keyboard.js"></script>
-    <script  type='text/javascript' src="<%= request.getContextPath() %>/static/js/keyboard/jquery.mousewheel.js"></script> 
 
     <%--Gooogle Analytics recording.--%>
     <%
@@ -125,8 +138,8 @@
 		    }
     %>
     <script  type="text/javascript">
-       mostraAlerta();
-        
+             quitarNoScriptNavbar();
+             quitarNoScript();
     </script>
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -140,7 +153,7 @@
     <%-- HACK: leftmargin, topmargin: for non-CSS compliant Microsoft IE browser --%>
     <%-- HACK: marginwidth, marginheight: for non-CSS compliant Netscape browser --%>
     <body class="undernavigation">
-        <a tabindex="1" id="saltarContent" class="sr-only"  href="#content">Ir al contenido</a>
+        <a tabindex="1" id="saltarContent" class="sr-only"  href="#content" alt="">Ir al contenido</a>
 <header class="navbar navbar-inverse navbar-fixed-top">    
     <%
     if (!navbar.equals("off"))
@@ -162,14 +175,15 @@
 %>
 </header>
 
+<!--este es un cambio -->
 <main  id="content" role="main">
 <div  id ="content2" class="container banner">
 	<div class="row">
 		<div class="col-md-9 brand">
-                    <h1 id="pagePrincipal"><fmt:message key="jsp.layout.header-default.brand.heading" /></h1>
+                    <h1 id="pagePrincipal"><fmt:message key="jsp.layout.header-default.brand.heading-FUTCO" /></h1>
         <fmt:message key="jsp.layout.header-default.brand.description-FUTCO" />
         </div>
-        <div class="col-md-3"><img class="pull-right" src="<%= request.getContextPath() %>/image/logo.gif" >
+        <div class="col-md-3"><img class="pull-right" src="<%= request.getContextPath() %>/image/FUTCO/futco.png" alt="logo del repositorio eccesible tecnológico comfenalco" >
         </div>
 	</div>
 </div>	

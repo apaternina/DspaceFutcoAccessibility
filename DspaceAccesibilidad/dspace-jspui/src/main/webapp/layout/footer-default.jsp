@@ -1,3 +1,10 @@
+<!-- 
+ Fecha : Noviembre del 2014
+ Autor - desarrollador : Antonio José Paternina Cardenas 
+ Descripción : Se  modifica el key del el texto del footer fmt:message.. para mostrar el texto personalizado
+-->
+
+
 <%--
 
     The contents of this file are subject to the license and copyright
@@ -41,14 +48,14 @@
 <!--<a id="saltarContent" style="bottom:82px;" class="sr-only"  href="#content2">Saltar el pié de página</a>-->
             <%-- Page footer --%>
              
-             <footer class="navbar navbar-inverse navbar-bottom">
+             <footer class="navbar navbar-inverse navbar-bottom bar_footer">
                
              <div id="designedby" class="container text-muted">
              <!--<fmt:message key="jsp.layout.footer-default.theme-by"/> <a href="http://www.cineca.it"><img
                                     src="<%= request.getContextPath() %>/image/logo-cineca-small.png"
                                     alt="Logo CINECA" /></a>-->
 			<div id="footer_feedback" class="pull-right">                                    
-                                <p class="text-muted"><fmt:message key="jsp.layout.footer-FUTCO.text"/>&nbsp;-
+                                <p class="text-muted"><fmt:message key="jsp.layout.footer-FUTCO.text"/>&nbsp;
                                <!-- <a target="_blank" href="<%= request.getContextPath() %>/feedback"><fmt:message key="jsp.layout.footer-default.feedback"/></a>-->
                                 <!--<a href="<%= request.getContextPath() %>/htmlmap"></a></p>-->
                                 </div>

@@ -57,7 +57,8 @@
 %>
 	<p><fmt:message key="jsp.submit.select-collection.info1"/></p>
 
-    <form action="<%= request.getContextPath() %>/submit" method="post" onkeydown="return disableEnterKey(event);">
+    <!--<form action="<%= request.getContextPath() %>/submit" method="post" onkeydown="return disableEnterKey(event);">-->
+        <form action="<%= request.getContextPath() %>/submit" method="post">
 <%
 		//if no collection was selected, display an error
 		if((noCollection != null) && (noCollection.booleanValue()==true))
@@ -80,8 +81,9 @@
 %>
                             <option value="<%= collections[i].getID() %>"><%= collections[i].getMetadata("name") %></option>
 <%
+ }
 %>
-                        </select>        }
+                        </select>       
 
 					</div><br/>
             <%-- Hidden fields needed for SubmissionController servlet to know which step is next--%>

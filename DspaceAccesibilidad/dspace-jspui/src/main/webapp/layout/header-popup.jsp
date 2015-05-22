@@ -30,13 +30,16 @@
     boolean locbar = ((Boolean) request.getAttribute("dspace.layout.locbar")).booleanValue();
 
     String siteName = ConfigurationManager.getProperty("dspace.name");
+    String scriptfutco = (String) request.getAttribute("dspace.layout.scriptfutco");    //Added code
+    String cssfutco = (String) request.getAttribute("dspace.layout.cssfutco");                  //Added code
+    
     String feedRef = (String)request.getAttribute("dspace.layout.feedref");
     List parts = (List)request.getAttribute("dspace.layout.linkparts");
     String extraHeadData = (String)request.getAttribute("dspace.layout.head");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<html lang="es">
     <head>
         <title><%= siteName %>: <%= title %></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -44,12 +47,31 @@
         <link rel="stylesheet" href="<%= request.getContextPath() %>/styles.css" type="text/css" />
         <link rel="stylesheet" href="<%= request.getContextPath() %>/print.css" media="print" type="text/css" />
         <link rel="shortcut icon" href="<%= request.getContextPath() %>/favicon.ico" type="image/x-icon"/>
+        
+        
 <%
     if (extraHeadData != null)
         { %>
 <%= extraHeadData %>
 <%
         }
+  /* 
+ 	Fecha :  Noviembre de 2014
+ 	Autor - desarrollador : Antonio José Paternina Cardenas
+ 	Descripción : Se agregan los archivos javascript personalizados y las hojas de estilo personalizadas
+ */
+    if (scriptfutco == null || scriptfutco.equals("on"))           //Added code starts here
+       {
+%>
+     <script type='text/javascript' src='<%= request.getContextPath() %>/static/js/FUTCO.js'></script>
+<%      }
+    if (cssfutco != null && cssfutco.equals("on"))
+    {
+%>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/static/css/FUTCO/FUTCO.css" type="text/css" />
+
+<%
+    }                                                                 //Added code ends here
 %>
 
     <script type="text/javascript" src="<%= request.getContextPath() %>/utils.js"></script>

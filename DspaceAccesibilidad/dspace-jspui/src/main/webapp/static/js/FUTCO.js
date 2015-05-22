@@ -6,20 +6,45 @@
 
 /*Fecha : 2041114
  *Autor : Antonio Jose Paternina  
- *Descripción : Muestra los mensajes de alertas las paginas de dspace
- *              Nota :Se quita este elemento porque los lectores de pantalla leen lo que esta dentro de la etiqueta noscript  
+ *Descripción : Nota :Se quita este elemento porque los lectores de pantalla leen lo que esta dentro de la etiqueta noscript  
  */
-function quitarNoScript(){
+function quitarNoScriptNavbar(){
     try {
         $(function(){
-            $("#li_popupAyuda a").attr('tabindex','');    
-            $("#li_popupAyuda noscript").html('');
+            if($("#li_popupAyuda a")!=null){
+             $("#li_popupAyuda a").attr('tabindex','');      
+             $("#li_popupAyuda noscript").html('');
+            }
 	});
     } catch (e) {
      //   alert('¡Ha ocurrido un error en la función quitarNoScript '+e.message);
     }
 }
 
+/*Fecha : 2041114
+ *Autor : Antonio Jose Paternina  
+ *Descripción : Nota :Se quita este elemento porque los lectores de pantalla leen lo que esta dentro de la etiqueta noscript  
+ */
+function quitarNoScript(){
+    try {
+        $(function(){
+            var sNoscripts = $("noscript");
+            for (var i = 0; i < sNoscripts.length; i++) {
+                sNoscripts[i].innerHTML='';
+                sNoscripts[i].innerText='';
+            }
+           
+	});
+    } catch (e) {
+     //   alert('¡Ha ocurrido un error en la función quitarNoScript '+e.message);
+    }
+}
+
+/*Fecha : 2041114
+ *Autor : Antonio Jose Paternina  
+ *Descripción : Muestra los mensajes de alertas las paginas de dspace
+ *              Nota :Se quita este elemento porque los lectores de pantalla leen lo que esta dentro de la etiqueta noscript  
+ */
 function mostraAlerta(){
         try {
          $(function(){

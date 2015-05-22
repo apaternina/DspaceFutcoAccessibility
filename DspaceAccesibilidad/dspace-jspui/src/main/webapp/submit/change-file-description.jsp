@@ -32,13 +32,18 @@
 	//get submission information object
     SubmissionInfo subInfo = SubmissionController.getSubmissionInfo(context, request);
 %>
+<script>
+    
+    
+</script>
 
 <dspace:layout style="submission" locbar="off"
                navbar="off"
                titlekey="jsp.submit.change-file-description.title"
                nocache="true">
 
-    <form action="<%= request.getContextPath() %>/submit" method="post" onkeydown="return disableEnterKey(event);">
+    <!--<form action="<%= request.getContextPath() %>/submit" method="post" onkeydown="return disableEnterKey(event);">-->
+        <form action="<%= request.getContextPath() %>/submit" method="post" >
 
         <jsp:include page="/submit/progressbar.jsp"/>
 

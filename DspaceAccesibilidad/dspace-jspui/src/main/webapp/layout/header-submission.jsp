@@ -30,6 +30,8 @@
     boolean locbar = ((Boolean) request.getAttribute("dspace.layout.locbar")).booleanValue();
 
     String siteName = ConfigurationManager.getProperty("dspace.name");
+    String scriptfutco = (String) request.getAttribute("dspace.layout.scriptfutco");    //Added code
+    String cssfutco = (String) request.getAttribute("dspace.layout.cssfutco");    
     String feedRef = (String)request.getAttribute("dspace.layout.feedref");
     boolean osLink = ConfigurationManager.getBooleanProperty("websvc.opensearch.autolink");
     String osCtx = ConfigurationManager.getProperty("websvc.opensearch.svccontext");
@@ -43,7 +45,7 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
         <title><%= title %> | <%= siteName %></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -54,7 +56,7 @@
 	    <link rel="stylesheet" href="<%= request.getContextPath() %>/static/css/bootstrap/bootstrap.min.css" type="text/css" />
 	    <link rel="stylesheet" href="<%= request.getContextPath() %>/static/css/bootstrap/bootstrap-theme.min.css" type="text/css" />
 	    <link rel="stylesheet" href="<%= request.getContextPath() %>/static/css/bootstrap/dspace-theme.css" type="text/css" />
-            <link rel="stylesheet" href="<%= request.getContextPath() %>/static/css/FUTCO/FUTCO.css" type="text/css" />
+            
 <%
     if (!"NONE".equals(feedRef))
     {
@@ -77,7 +79,20 @@
         { %>
 <%= extraHeadData %>
 <%
-        }
+              }
+ 
+    if (scriptfutco == null || scriptfutco.equals("on"))           //Added code starts here
+       {
+%>
+     <script type='text/javascript' src='<%= request.getContextPath() %>/static/js/FUTCO.js'></script>
+<%      }
+     if (cssfutco == null || cssfutco.equals("on"))
+    {
+%>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/static/css/FUTCO/FUTCO.css" type="text/css" />
+
+<%
+    }                                                                 //Added code ends here
 %>
         
 	<script type='text/javascript' src="<%= request.getContextPath() %>/static/js/jquery/jquery-1.10.2.min.js"></script>
@@ -86,7 +101,7 @@
 	<script type='text/javascript' src='<%= request.getContextPath() %>/static/js/holder.js'></script>
 	<script type="text/javascript" src="<%= request.getContextPath() %>/utils.js"></script>
         <script type="text/javascript" src="<%= request.getContextPath() %>/static/js/choice-support.js"> </script>
-        <script type='text/javascript' src='<%= request.getContextPath() %>/static/js/FUTCO.js'></script>
+        
     <%--Gooogle Analytics recording.--%>
     <%
     if (analyticsKey != null && analyticsKey.length() > 0)
@@ -111,9 +126,10 @@
 		<%
 		    }
     %>
-    <script  type="text/javascript">
-       mostraAlerta();
-        
+     <script  type="text/javascript">
+             quitarNoScript();
+             quitarNoScriptNavbar();
+            
     </script>
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
